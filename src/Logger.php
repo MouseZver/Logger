@@ -12,9 +12,9 @@ final class Logger
 	
 	public int $time;
 	
-	public function __construct ( string $filelog, int $time = null, bool $save = true )
+	public function __construct ( string $name, int $time = null, bool $save = true )
 	{
-		$this -> file = $filelog;
+		$this -> file = $name;
 		
 		$this -> time = $time ?? time ();
 		
@@ -44,7 +44,7 @@ final class Logger
 		{
 			$start = date ( 'Y-m-d H:i:s - ', $this -> time );
 			
-			file_put_contents ( $this -> file, $start . implode ( PHP_EOL . $start, $this -> lines ) . PHP_EOL, FILE_APPEND );
+			file_put_contents ( $this -> file . '.log', $start . implode ( PHP_EOL . $start, $this -> lines ) . PHP_EOL, FILE_APPEND );
 			
 			$this -> lines = [];
 		}
