@@ -1,0 +1,25 @@
+{
+    "name": "nouvu/logger",
+    "description": "Logger",
+    "type": "library",
+    "license": "MIT",
+	"homepage": "https://github.com/MouseZver/Logger",
+	"keywords": [
+        "Logger",
+		"php7.4"
+    ],
+    "authors": [
+        {
+            "name": "MouseZver",
+            "email": "mouse-zver@xaker.ru"
+        }
+    ],
+	"require": {
+		"php": ">=7.4",
+	},
+	"autoload": {
+		"psr-4": {
+			"Nouvu\\Logger": "src/Logger.php"
+		}
+	}
+}
