@@ -2,7 +2,7 @@
 
 declare ( strict_types = 1 );
 
-namespace Nouvu;
+namespace Nouvu\Logger;
 
 final class Logger
 {
