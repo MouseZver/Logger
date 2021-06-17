@@ -6,20 +6,14 @@ namespace Nouvu\Logger;
 
 use Nouvu\Database\QueryStorageBank;
 
-final class Database
+final class Database implements InterfaceLogger
 {
-	private string $group;
+	public function __construct ( 
+		private string $group, 
+		private QueryStorageBank $storage 
+	) {}
 	
-	private QueryStorageBank $storage;
-	
-	public function __construct ( string $group, QueryStorageBank $storage )
-	{
-		$this -> group = $group;
-		
-		$this -> storage = $storage;
-	}
-	
-	public function set( ...$val ): self
+	public function set( string | int | float ...$val ): InterfaceLogger
 	{
 		if ( func_num_args () > 1 )
 		{
@@ -33,7 +27,7 @@ final class Database
 		return $this;
 	}
 	
-	private function save( $message ): void
+	private function save( string | int | float $message ): void
 	{
 		$this -> storage -> save( Database :: class, [ date ( 'Y-m-d H:i:s' ), $this -> group, $message ] );
 	}
