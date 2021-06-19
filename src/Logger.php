@@ -8,7 +8,7 @@ final class Logger implements InterfaceLogger
 {
 	private array $lines;
 	
-	public function __construct ( private string $file, public int $time = null )
+	public function __construct ( private string $file, public int | null $time = null )
 	{
 		$this -> time ??= time ();
 		
