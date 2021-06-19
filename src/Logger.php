@@ -12,10 +12,15 @@ final class Logger implements InterfaceLogger
 	{
 		$this -> time ??= time ();
 		
-		if ( $save )
+		register_shutdown_function ( function (): void
 		{
-			register_shutdown_function ( [ $this, 'save' ] );
-		}
+			if ( ! empty ( $this -> lines ) )
+			{
+				$start = date ( 'Y-m-d H:i:s - ', $this -> time );
+				
+				file_put_contents ( $this -> file . '.log', $start . implode ( PHP_EOL . $start, $this -> lines ) . PHP_EOL, FILE_APPEND );
+			}
+		} );
 	}
 	
 	public function set( string | int | float ...$val ): InterfaceLogger
@@ -30,15 +35,5 @@ final class Logger implements InterfaceLogger
 		$this -> lines[] = $val[0];
 		
 		return $this;
-	}
-	
-	private function save(): void
-	{
-		if ( ! empty ( $this -> lines ) )
-		{
-			$start = date ( 'Y-m-d H:i:s - ', $this -> time );
-			
-			file_put_contents ( $this -> file . '.log', $start . implode ( PHP_EOL . $start, $this -> lines ) . PHP_EOL, FILE_APPEND );
-		}
 	}
 }

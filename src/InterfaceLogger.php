@@ -6,5 +6,5 @@ namespace Nouvu\Logger;
 
 interface InterfaceLogger
 {
-	public function set( ...$val ): InterfaceLogger;
+	public function set( string | int | float ...$val ): InterfaceLogger;
 }
