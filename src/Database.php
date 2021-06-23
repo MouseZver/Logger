@@ -6,14 +6,14 @@ namespace Nouvu\Logger;
 
 use Nouvu\Database\QueryStorageBank;
 
-final class Database implements InterfaceLogger
+final class Database implements LoggerInterface
 {
 	public function __construct ( 
 		private string $group, 
 		private QueryStorageBank $storage 
 	) {}
 	
-	public function set( string | int | float ...$val ): InterfaceLogger
+	public function set( string | int | float ...$val ): LoggerInterface
 	{
 		if ( func_num_args () > 1 )
 		{
